@@ -1,0 +1,22 @@
+{
+  "name": "@fresh-pack/eslint-config",
+  "version": "0.1.0",
+  "private": true,
+  "files": [
+    "index.js"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "eslint": "~8.55.0",
+    "eslint-config-prettier": "~9.1.0",
+    "eslint-config-turbo": "1.10.16",
+    "eslint-plugin-import": "~2.29.0",
+    "eslint-plugin-sort": "~2.11.0",
+    "eslint-plugin-unicorn": "~49.0.0",
+    "eslint-plugin-unused-imports": "~3.0.0",
+    "typescript": "~5.3.3"
+  },
+  "engines": {
+    "node": "^20.0.0"
+  }
+}
