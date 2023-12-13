@@ -1,7 +1,12 @@
+const { resolve } = require("node:path");
+
+const project = resolve(process.cwd(), "tsconfig.json");
+
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   extends: [
-    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:import/recommended",
     "plugin:sort/recommended",
     "plugin:unicorn/all",
     "turbo",
@@ -14,19 +19,9 @@ module.exports = {
         "unicorn/prefer-module": "error",
       },
     },
-    {
-      extends: ["plugin:testing-library/react"],
-      files: ["./**/*.test.{js,jsx,ts,tsx}"],
-    },
   ],
-  parserOptions: {
-    babelOptions: {
-      presets: [require.resolve("next/babel")],
-    },
-  },
   plugins: ["sort", "unused-imports"],
   rules: {
-    "@next/next/no-html-link-for-pages": "off",
     "import/order": [
       "error",
       {
@@ -63,13 +58,6 @@ module.exports = {
         ],
       },
     ],
-    "react/jsx-newline": ["warn", { prevent: false }],
-    "react/jsx-sort-props": [
-      "warn",
-      {
-        ignoreCase: true,
-      },
-    ],
     "sort/import-members": "off",
     "sort/imports": "off",
     "sort/type-properties": "error",
@@ -97,8 +85,16 @@ module.exports = {
     "unused-imports/no-unused-imports": "error",
   },
   settings: {
-    react: {
-      version: "detect",
+    "import/resolver": {
+      typescript: {
+        project,
+      },
     },
   },
+  ignorePatterns: [
+    // Ignore dotfiles
+    ".*.js",
+    "node_modules/",
+  ],
+  overrides: [{ files: ["*.js?(x)", "*.ts?(x)"] }],
 };
