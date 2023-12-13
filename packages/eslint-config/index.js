@@ -7,19 +7,17 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:import/recommended",
+    "plugin:import/typescript",
     "plugin:sort/recommended",
     "plugin:unicorn/all",
     "turbo",
     "prettier",
   ],
-  overrides: [
-    {
-      files: ["./src/**/*.{js,jsx,ts,tsx}"],
-      rules: {
-        "unicorn/prefer-module": "error",
-      },
-    },
-  ],
+  env: {
+    node: true,
+    browser: true,
+  },
+  overrides: [{ files: ["*.js?(x)", "*.ts?(x)"] }],
   plugins: ["sort", "unused-imports"],
   rules: {
     "import/order": [
@@ -96,5 +94,4 @@ module.exports = {
     ".*.js",
     "node_modules/",
   ],
-  overrides: [{ files: ["*.js?(x)", "*.ts?(x)"] }],
 };
