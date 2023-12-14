@@ -3,6 +3,8 @@ import { lt } from "semver";
 
 type DependencyField = { [key: string]: string };
 
+export type Package = Awaited<ReturnType<typeof loadPackages>>[number];
+
 type PackageJson = {
   [key in (typeof dependencyFields)[number]]?: DependencyField;
 };
@@ -29,9 +31,7 @@ export function extractPackages(packageJson: PackageJson) {
   });
 }
 
-export function getPackagesToUpgrade(
-  packages: Awaited<ReturnType<typeof loadPackages>>,
-) {
+export function getPackagesToUpgrade(packages: Package[]) {
   return packages.filter(({ versions }) =>
     lt(versions.current, versions.latest),
   );
